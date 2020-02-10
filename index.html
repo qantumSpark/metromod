@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Metromod</title>
+</head>
+<body>
+
+  <div class="app">
+    <form>
+      <label for="mesureInput">Mesures:</label>
+      <input type="number" min="1" max="30" id="mesureInput" value="5">
+      <label for="baseInput">base:</label>
+      <input type="number" min="2" max="4" id="baseInput" value="4">
+      <label for="tempoInput">tempo:</label>
+      <input type="number" min="4" max="220" id="tempoInput" value="90">
+      <button>Add</button>
+    </form>
+  
+    <section class="list-container">
+      <!-- <div class="list-item">
+        <p>Mesures: </p>
+        <p>Base: </p>
+        <p>tempo: </p>
+      </div> -->
+    </section>
+    <button class="test">Test</button>
+  
+  </div>
+  
+  <audio src="./files/first.wav" id="primSound"></audio>
+  <audio src="./files/other.wav" id="secSound"></audio>
+  <script src="./main.js" type="module"></script>
+</body>
+</html>

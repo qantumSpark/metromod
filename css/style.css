@@ -1,0 +1,48 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.app{
+  width: 100%;
+  display: flex;
+  flex: 1;
+}
+
+.app form{
+  width: 30vw;
+  height: 100vh;
+  background-color: #888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.app form label{
+  font-size: 2rem;
+  text-align: left;
+}
+.app form input{
+  width: 50%;
+  font-size: 1.8rem;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.app form button{
+  margin-top: 50px;
+  padding: 50px;
+  border-radius: 10px;
+  background-color: rgb(36, 204, 36);
+}
+.app .list-container{
+  width: 70vw;
+  background-color: #555;
+  height: 100vh;
+}
+.test{
+  font-size: 2rem;
+  padding: 1rem 2rem;
+  position: absolute;
+  top: 100px;
+  right: 20px;
+}
