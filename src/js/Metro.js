@@ -4,7 +4,7 @@ function Metro(primSoundSelector, secSoundSelector) {
   this.isOn = false;
 
   //Simple play function of metronome need a button to toggle on and off
-  this.simplePlay = (tempo, base, count = 1) => {
+  this.simplePlay = (tempo, base, cb,count = 1) => {
     //Check if metronome is ON
     if (this.isOn === false) return;
 
@@ -25,10 +25,10 @@ function Metro(primSoundSelector, secSoundSelector) {
       newCount += 1;
       this.secSound.play();
     }
-
+    cb()
     //Recursive call to keep playing as long as isOn key is set to true
     setTimeout(() => {
-      this.simplePlay(tempo, base, newCount);
+      this.simplePlay(tempo, base, cb, newCount);
     }, tempoMs);
   };
 

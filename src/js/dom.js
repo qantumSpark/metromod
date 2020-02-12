@@ -28,3 +28,25 @@ export function appendToPage(selector, cache){
     parent.appendChild(div)
   })
 }
+
+export function tempoInputSelection(){
+  let input = document.querySelector('input.tempo-input')
+  let minus = document.querySelector(".left.min.tempo-selector-icon")
+  let add = document.querySelector(".right.add.tempo-selector-icon")
+  
+  minus.addEventListener('click', e => {
+    console.log(input.value);
+    input.value = parseInt(input.value, 10) - 1
+    console.log('minus');
+  })
+  add.addEventListener('click', e => {
+    
+    input.value = parseInt(input.value, 10) +1
+    console.log('add');
+  })
+}
+
+export function clicked(selector, cb){
+  const element = document.querySelector(selector)
+  element.addEventListener('click', cb)
+}

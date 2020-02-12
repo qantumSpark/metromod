@@ -9,29 +9,68 @@
 <body>
 
   <div class="app">
-    <form>
-      <label for="mesureInput">Mesures:</label>
-      <input type="number" min="1" max="30" id="mesureInput" value="5">
-      <label for="baseInput">base:</label>
-      <input type="number" min="2" max="4" id="baseInput" value="4">
-      <label for="tempoInput">tempo:</label>
-      <input type="number" min="4" max="220" id="tempoInput" value="90">
-      <button>Add</button>
-    </form>
-  
-    <section class="list-container">
-      <!-- <div class="list-item">
-        <p>Mesures: </p>
-        <p>Base: </p>
-        <p>tempo: </p>
-      </div> -->
-    </section>
-    <button class="test">Test</button>
-  
+    <header>
+      <h1>Metro<span>M</span>od</h1>
+    </header>
+    <div class="page" id="home">
+      <form>
+        <img src="./files/svg_remove_circle.svg" class="left min tempo-selector-icon" alt="minus">
+        
+        <div class="input-container">
+          <input class="tempo-input" type="number" min="40" max="240" value="90">
+        </div>
+        <img class="right add tempo-selector-icon" src="./files/svg_add_circle.svg" alt="add">
+      </form>
+      <!-- <div class="slider"></div> -->
+      <div class="base-selectors">
+        <div class="selector hight-left" data-value="2">2</div>
+        <div class="selector medium select" data-value="3">3</div>
+        <div class="selector " data-value="4">4</div>
+        <div class="selector medium" data-value="6">6</div>
+        <div class="selector hight-right" data-value="12">12</div>
+      </div>
+      <div class="button-container">
+        <div class="button">
+          <h5 class="button-text">PLAY</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="page hiddenPage" id="mods">
+      <form>
+        <label for="mesureInput">Mesures:</label>
+        <input type="number" min="1" max="30" id="mesureInput" value="5">
+        <label for="baseInput">base:</label>
+        <input type="number" min="2" max="4" id="baseInput" value="4">
+        <label for="tempoInput">tempo:</label>
+        <input type="number" min="4" max="220" id="tempoInput" value="90">
+        <button>Add</button>
+      </form>
+    
+      <section class="list-container">
+        <!-- <div class="list-item">
+          <p>Mesures: </p>
+          <p>Base: </p>
+          <p>tempo: </p>
+        </div> -->
+      </section>
+      <button class="test">Test</button>
+    </div>
+    
+    <div class="page hiddenPage" id="saves">
+      <h1>SAVES PAGE</h1>
+    </div>
+  <footer>
+    <nav>
+      <a href="#home" class="nav-item">home</a>
+      <a href="#mods" class="nav-item">Mods</a>
+      <a href="#saves" class="nav-item">saves</a>
+    </nav>
+</footer>
   </div>
   
   <audio src="./files/first.wav" id="primSound"></audio>
   <audio src="./files/other.wav" id="secSound"></audio>
-  <script src="./public/bundle.js"></script>
+  <script src="./src/index.js" type="module"></script>
 </body>
 </html>
