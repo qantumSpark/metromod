@@ -1,4 +1,10 @@
 import * as dom from "./dom.js";
+//
+
+//Refactorisation in progress, see https://github.com/qantumSpark/localstorage_api
+
+//
+
 
 //Save an object (partition) to localStorage
 export const saveToLocalStorage = obj => {
