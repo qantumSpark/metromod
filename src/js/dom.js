@@ -50,3 +50,4 @@ export function clicked(selector, cb){
   const element = document.querySelector(selector)
   element.addEventListener('click', cb)
 }
+

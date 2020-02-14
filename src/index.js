@@ -1,6 +1,6 @@
-import * as api from "./js/localAPI.js";
+import * as api from "./js/api.js"
 import * as dom from "./js/dom.js";
-import * as util from "./js/utilities.js";
+
 import nav from "./js/nav.js";
 import Metro from "./js/Metro.js";
 //Build metronome Object
@@ -62,40 +62,93 @@ playBtn.addEventListener("click", e => {
 ///////////////////////////////////
 //MODS SECTION
 ///////////////////////////////////
+//api.newCollection("mods-cache")
+const addBtn = document.querySelector('#modsAddButton')
 
-//On load, check the cache to see if there are segments to render
-window.addEventListener("load", e => {
-  let cache = api.getCacheData();
-  if (cache !== null) dom.appendToPage(".list-container", cache);
-});
 
-//Select form btn
-const addBtn = document.querySelector("form button");
+window.addEventListener('load', () => api.getCollection("mods-cache").forEach(item => renderSegment(item, "#mods .list-container")))
 
-//Test Play button
-document.querySelector(".test").addEventListener("click", e => {
-  e.preventDefault();
-  //Toggle isOn property false/true
-  metro.isOn = !metro.isOn;
-  if (metro.isOn) {
-    //Get all segments from cache
-    let part = api.getCacheData();
-
-    //Play cache's partition
-    metro.playPartition(part);
+addBtn.addEventListener('click', addFormBtnClicked)
+function addFormBtnClicked(event) {
+  const mesureInput = document.querySelector("#mesureInput").value
+  const baseInput = document.querySelector("#baseInput").value
+  const tempoInput = document.querySelector("#tempoInput").value
+  const segment = {
+    mesure: mesureInput,
+    base: baseInput,
+    tempo : tempoInput
   }
-});
+  api.addItem("mods-cache", segment) 
+  refreshView("mods-cache", "#mods .list-container")
+}
 
-//Build , appended and save segment from the form
-addBtn.addEventListener("click", e => {
-  e.preventDefault();
-  //Build new segment object from user inputs
-  let segment = util.buildSegmentObject();
+function renderSegment(obj, selectorContainer) {
+  let container = document.querySelector(selectorContainer)
+  let { mesure, base, tempo, id } = obj
 
-  //Add to cache data
-  //api.addToCache handle render
-  api.addToCache(segment);
-});
+  let segment = document.createElement('div')
+  segment.classList.add('mods-segment')
+  segment.setAttribute('id', id)
+  segment.innerHTML = `
+    <h5 class="segment-mesures">Mesures: <span>${mesure}</span> </h5>
+    <h5 class="segment-mesures">Base: <span>${base}</span> </h5>
+    <h5 class="segment-mesures">Tempo: <span>${tempo}</span> </h5>
+    <div class="segment-delete" ><h5>x</h5></div>
+  `
+  container.appendChild(segment)
+  console.log(segment.childNodes[7]);
+  
+  segment.childNodes[7].addEventListener('click', e => {
+    console.log('clicked');
+    api.deleteItem("mods-cache", id)
+    document.getElementById(id).style.opacity = "0"
+    document.getElementById(id).style.height = "0px"
+    setTimeout(()=>refreshView("mods-cache", "#mods .list-container"), 300)
+  })
+}
+
+function clearList(selector) {
+  const container = document.querySelector(selector)
+  container.innerHTML = ''
+}
+
+function refreshView(collection, selector){
+  clearList(selector)
+  api.getCollection(collection).forEach(item => renderSegment(item, selector))
+}
+//On load, check the cache to see if there are segments to render
+// window.addEventListener("load", e => {
+//   let cache = api.getCacheData();
+//   if (cache !== null) dom.appendToPage(".list-container", cache);
+// });
+
+// //Select form btn
+// const addBtn = document.querySelector("form button");
+
+// //Test Play button
+// document.querySelector(".test").addEventListener("click", e => {
+//   e.preventDefault();
+//   //Toggle isOn property false/true
+//   metro.isOn = !metro.isOn;
+//   if (metro.isOn) {
+//     //Get all segments from cache
+//     let part = api.getCacheData();
+
+//     //Play cache's partition
+//     metro.playPartition(part);
+//   }
+// });
+
+// //Build , appended and save segment from the form
+// addBtn.addEventListener("click", e => {
+//   e.preventDefault();
+//   //Build new segment object from user inputs
+//   let segment = util.buildSegmentObject();
+
+//   //Add to cache data
+//   //api.addToCache handle render
+//   api.addToCache(segment);
+// });
 
 
 ///////////////////////////////////

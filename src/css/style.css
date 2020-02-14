@@ -3,6 +3,9 @@
   margin: 0;
   box-sizing: border-box;
 }
+h5{
+  font-weight: 500;
+}
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -30,12 +33,11 @@ body{
 .app{
   width: 100vw;
   height: 100vh;
+  padding-top: 80px;
+  padding-bottom: 80px;
   max-width: 750px;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
+  
   flex: 1;
   background-color:  var(--bgc);
 }
@@ -45,7 +47,9 @@ body{
 }
 
 header, footer{
-  position: relative;
+  max-width: 750px;
+  max-height: 80px;
+  position:fixed;
   z-index: 50;
   background-color: #fff;
   box-shadow: 0 5px 10px var(--darkShadow) ,0 -5px 10px var(--darkShadow);
@@ -64,6 +68,13 @@ header h1{
 header span{
   color: var(--blue);
   font-weight: bold;
+}
+header{
+  top: 0;
+}
+footer{
+
+  bottom: 0;
 }
 nav{
   width: 100%;
@@ -88,25 +99,26 @@ nav a {
 /* ================================================ */
 #home{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 0 20px;
+  
 }
 
 /* selection tempo */
 
-form{
+#home form{
   border-radius: 50%;
   display: flex;
   align-items: center;
-  margin: 30px;
-}
+  }
 .input-container{
   background-color: none;
   box-shadow: 8px 8px 20px var(--darkShadow), -8px -8px 20px white;
-  height: 200px;
-  width: 200px;
+  height: 40vw;
+  max-height: 200px;
+  width: 40vw;
+  max-width: 200px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -121,7 +133,7 @@ form{
   text-align: center;
   border-radius: 50%;
   border: none;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: var(--darkBlue);
 }
 /*  plus & moins bouton  */
@@ -140,55 +152,45 @@ form{
 .base-selectors{
   background-color: none;
   display: flex;
-  margin-top: 20px;
-  width: 300px;
+  width: 290px;
+  box-shadow:  5px 5px 15px rgba(0, 0, 0, 0.15), -5px -5px 15px white;
   justify-content: space-between;
+  align-items: center;
+  border-radius: 50px;
+  height: 60px;
+  padding: 0 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .selector{
+  box-shadow:  5px 5px 15px rgba(0, 0, 0, 0.15), -5px -5px 15px white;
+
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40px;
-  width: 40px;
-  border: 3px solid var(--blue);
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   font-size: 1rem;
-  font-weight: bold;
-  color: var(--blue);
-  opacity: .8;
+  font-weight: 500;
+  color: var(--lightBlue);
 }
-.selector.hight-left{
-  position: relative;
-  top: -45px;
-  left: 20px;
-}
-.selector.hight-right{
-  position: relative;
-  top: -45px;
-  right: 20px;
-}
-.selector.medium{
-  position: relative;
-  top: -10px;
-}
+
 .selector:hover{
-  opacity: 1;
+  background-color: #e0e0e0;
 }
 .selector:active{
-  color: white;
-  background-color: var(--blue);
+
 }
 .selector.select{
-  color: white;
-  background-color: var(--blue);
+  box-shadow:  8px 8px 20px var(--darkShadow), -8px -8px 20px white, inset 4px 4px 5px var(--darkShadow),inset -8px -8px 20px white;
+
   opacity: 1;
 }
 
 
 .button-container{
-  margin-top: auto;
-  margin-bottom: auto;
   height: 200px;
   width: 200px;
   display: flex;
@@ -242,11 +244,12 @@ background: radial-gradient(circle, rgb(0, 132, 255) 0%, rgb(24, 30, 34) 90%);
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  position: auto;
 }
 #mods form{
   border-radius: 20px;
   padding: 40px 20px;
-
+  background-color: #ECECEC;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -254,8 +257,9 @@ background: radial-gradient(circle, rgb(0, 132, 255) 0%, rgb(24, 30, 34) 90%);
   height: 120px;
   width: 80%;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  position: relative;
-  top: -65px;
+  position: fixed;
+  top: 0;
+  z-index: 5;
 }
 #mods .mods-form-label, .mods-form-input{
   width: 100%;
@@ -293,10 +297,10 @@ background: radial-gradient(circle, rgb(0, 132, 255) 0%, rgb(24, 30, 34) 90%);
   opacity: .8;
 }
 #mods #mesureLabel{
-  left: -55px !important;
+  left: -50px !important;
 }
 #mods #baseLabel{
-  left: -45px !important;
+  left: -40px !important;
 }
 #mods form .button{
   background: none;
@@ -310,4 +314,63 @@ background: radial-gradient(circle, rgb(0, 132, 255) 0%, rgb(24, 30, 34) 90%);
   top: -5px;
   font-size: 2rem;
   opacity: .8;
+  cursor: pointer;
+  border: none;
 }
+.mods-beeper-indicator{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 8px 8px 20px var(--darkShadow), -8px -8px 20px white;
+  background-color: #ECECEC;
+  position: relative;
+  top: 160px;
+  left: -135px;
+}
+
+/*=================*/
+.list-container {
+  box-shadow:inset 8px 8px 20px var(--darkShadow);
+  z-index: -10;
+  width: 100%;
+  height: 65vh;
+  margin-top: 170px;
+  box-sizing: content-box;
+  overflow: scroll;
+  
+}
+.list-container .mods-segment{
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 20px auto;
+  height: 50px;
+  width: 80%;
+  transition: .3s;
+  color: rgba(11, 34, 60, 0.8);
+
+}
+.list-container .mods-segment:hover{
+  background-color: #c0c0c0;
+}
+.list-container .chevrons-container{
+
+}
+.list-container .chevron-up{
+
+}
+.list-container .chevron-down{
+
+}
+.list-container .segment-mesures{
+
+}
+.list-container .segment-mesures span{
+  font-weight: bold!important;
+  color: var(--blue);
+}
+.list-container .segment-delete{
+  cursor: pointer;
+}
+

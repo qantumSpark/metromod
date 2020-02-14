@@ -16,9 +16,9 @@ function Metro(primSoundSelector, secSoundSelector) {
 
     //Handle sound and updating count
     if (count === 1) {
-      console.log(this.primSound);
+      //console.log(this.primSound);
       newCount += 1;
-      this.secSound.play();
+      this.primSound.play();
     } else if (count === base) {
       newCount = 1;      
       this.secSound.play();

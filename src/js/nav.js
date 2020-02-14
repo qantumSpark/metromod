@@ -19,7 +19,7 @@ export default function nav(...arg) {
         e.on = !e.on
       }
     })
-    console.log(this.hashLocation);
+    //console.log(this.hashLocation);
     
     navigateFromTo(oldHash, newHash)
   }
