@@ -45,6 +45,8 @@ body{
 }
 
 header, footer{
+  position: relative;
+  z-index: 50;
   background-color: #fff;
   box-shadow: 0 5px 10px var(--darkShadow) ,0 -5px 10px var(--darkShadow);
   width: 100%;
@@ -76,11 +78,14 @@ nav a {
 .page{
   height: 100%;
   width: 100%;
+  transition: .3s ease-in-out!important;
 }
 .page.hiddenPage{
   display: none!important;
 }
+/* ================================================ */
 /* Page home */
+/* ================================================ */
 #home{
   display: flex;
   justify-content: space-evenly;
@@ -219,11 +224,90 @@ background: radial-gradient(circle, rgb(0, 132, 255) 0%, rgb(24, 30, 34) 90%);
   cursor: pointer;
 }
 .button-container .button.beep{
-  background: rgb(93, 236, 255);
-background: radial-gradient(circle, rgb(52, 231, 255) 0%, rgb(9, 49, 75) 90%);
+  background: radial-gradient(50% 50% at 50% 50%, #C5F2FF 21.88%, #32D1FF 52.6%, rgb(24, 30, 34) 100%);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(0, 240, 255, 0.5);
+  color:rgb(24, 30, 34)!important;
 }
 .button-container .button-text{
   position: relative;
   z-index: 10;
-  color: #fff;
+  color:rgb(24, 30, 34)!important;
+}
+
+/* ================================================ */
+/* Page Mods */
+/* ================================================ */
+#mods{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+#mods form{
+  border-radius: 20px;
+  padding: 40px 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 120px;
+  width: 80%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+  top: -65px;
+}
+#mods .mods-form-label, .mods-form-input{
+  width: 100%;
+  position: relative;
+  top: 20px;
+  display: flex;
+  align-items: center;
+}
+#mods .mods-form-label{
+  justify-content: center;
+}
+#mods .mods-form-input{
+  justify-content: space-evenly;
+}
+#mods form input{
+  font-size: .8rem;
+  font-weight: 500;
+  padding: 5px;
+  margin: 0 1rem;
+  border: none;
+  box-shadow: none;
+  box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.3);
+  width: 50px;
+  border-radius: 5px;
+}
+#mods form label{
+  padding: 0 20px;
+  position: relative;
+  left: -10px;
+  font-family: "Roboto";
+  font-size: 12px;
+  left: -30px;
+  font-weight: 500;
+  color: var(--darkBlue);
+  opacity: .8;
+}
+#mods #mesureLabel{
+  left: -55px !important;
+}
+#mods #baseLabel{
+  left: -45px !important;
+}
+#mods form .button{
+  background: none;
+  width: 25px;
+  height: 25px;
+  color: var(--lightBlue);
+  font-weight: 500;
+}
+#mods form .button{
+  position: relative;
+  top: -5px;
+  font-size: 2rem;
+  opacity: .8;
 }

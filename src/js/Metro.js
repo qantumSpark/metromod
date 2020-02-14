@@ -16,14 +16,15 @@ function Metro(primSoundSelector, secSoundSelector) {
 
     //Handle sound and updating count
     if (count === 1) {
+      console.log(this.primSound);
       newCount += 1;
-      this.primSound.play();
+      this.secSound.play();
     } else if (count === base) {
-      newCount = 1;
+      newCount = 1;      
       this.secSound.play();
     } else {
       newCount += 1;
-      this.secSound.play();
+      this.secSound.play();      
     }
     cb()
     //Recursive call to keep playing as long as isOn key is set to true
@@ -91,7 +92,7 @@ function Metro(primSoundSelector, secSoundSelector) {
     //Handle sound et timer
     if (parseInt(mesureTime, 10) === 1) {
       time = time + 1;
-      this.primSound.play();
+      this.secSound.play();
     } else if (parseInt(mesureTime, 10) === parseInt(base, 10)) {
       console.log(time);
       time = 1;

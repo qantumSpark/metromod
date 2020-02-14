@@ -38,13 +38,17 @@
 
     <div class="page hiddenPage" id="mods">
       <form>
-        <label for="mesureInput">Mesures:</label>
-        <input type="number" min="1" max="30" id="mesureInput" value="5">
-        <label for="baseInput">base:</label>
-        <input type="number" min="2" max="4" id="baseInput" value="4">
-        <label for="tempoInput">tempo:</label>
-        <input type="number" min="4" max="220" id="tempoInput" value="90">
-        <button>Add</button>
+        <div class="mods-form-label">
+          <label for="mesureInput" id="mesureLabel">Mesures:</label>
+          <label for="baseInput" id="baseLabel">base:</label>
+          <label for="tempoInput" id="tempoLabel">tempo:</label>
+        </div>
+        <div class="mods-form-input">
+          <input type="number" min="1" max="30" id="mesureInput" value="5">
+          <input type="number" min="2" max="4" id="baseInput" value="4">
+          <input type="number" min="4" max="220" id="tempoInput" value="90">
+          <div class="button">+</div>
+        </div>
       </form>
     
       <section class="list-container">
