@@ -415,3 +415,51 @@ background: radial-gradient(circle, rgb(0, 132, 255) 0%, rgb(24, 30, 34) 90%);
 }
 .save-button{}
 
+.mods-save-overlay-container{
+  position: absolute;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, .9);
+  top: -5px;
+  left: 0;
+  width: 100%;
+  height: 110%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .3s ease-in;
+  opacity: 0;
+}
+.save-form-container{
+  height: 150px;
+  border-radius: 15px;
+  padding: 30px 10px;
+  border: 1px solid var(--blue);
+  width: 90%;
+  background-color: #ececec;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+#mods #inner-save-title-input{
+  border: none;
+  border-bottom: 2px solid var(--lightBlue);
+  width: 80%;
+  background-color: transparent;
+  padding: 0 10px 5px 10px;
+  font-size: 1rem;
+  color: var(--darkShadow);
+}
+.inner-save-button{
+  display: block;
+  width: 90%;
+  padding: 5px 10px;
+  background-color: var(--blue);
+  text-align: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 50px;
+  color: #ececec;
+}

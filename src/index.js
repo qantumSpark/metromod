@@ -63,6 +63,7 @@ playBtn.addEventListener("click", e => {
 //MODS SECTION
 ///////////////////////////////////
 //api.newCollection("mods-cache")
+//api.newCollection("partitions")
 window.addEventListener('load', () => api.getCollection("mods-cache").forEach(item => renderSegment(item, "#mods .list-container")))
 
 const addBtn = document.querySelector('#modsAddButton')
@@ -70,6 +71,60 @@ addBtn.addEventListener('click', addFormBtnClicked)
 
 const playModulesButton = document.querySelector('.play-button.mod-button')
 playModulesButton.addEventListener('click', modulePlayButtonHandler)
+
+const saveModuleButton = document.querySelector('.save-button.mod-button')
+saveModuleButton.addEventListener('click', moduleSaveButtonHandler)
+
+function moduleSaveButtonHandler(event) {
+  let partition = {
+    segments: api.getCollection('mods-cache')
+  }
+  appearSaveOverlay()
+  const innerSaveButton = document.querySelector('.inner-save-button')
+  let nameInput = document.querySelector('#inner-save-title-input')
+  innerSaveButton.addEventListener('click', e => {
+    let name = nameInput.value
+    partition.name = name
+    api.addItem('partitions', partition)
+    itemWasSavedHandler()
+  })
+}
+//To export in modules
+function itemWasSavedHandler() {
+  let overlayContainer = document.querySelector('.mods-save-overlay-container')
+  overlayContainer.innerHTML = `
+  <div class="save-form-container">
+    <h5>Sauvegarde effectuée</h5>
+  </div>
+  `
+  setTimeout(() => {
+    document.querySelector('#mods').removeChild(overlayContainer)
+  }, 1000);
+}
+function appearSaveOverlay() {
+  let overlayContainer = document.createElement('div')
+  overlayContainer.classList.add('mods-save-overlay-container')
+  overlayContainer.addEventListener('click', e => {
+    if(e.target.classList.contains('mods-save-overlay-container')){
+      overlayContainer.style.opacity = "0"
+      setTimeout(() => {
+        document.querySelector('#mods').removeChild(overlayContainer)
+      }, 300);
+    }
+  })
+  const overlayInnerHTML = `
+    <div class="save-form-container">
+      <input id="inner-save-title-input" value="" placeholder="Entrez un titre">
+      <div class="inner-save-button">Sauvegarder la partition</div>
+    </div>
+  `
+  overlayContainer.innerHTML = overlayInnerHTML
+  document.querySelector('#mods').appendChild(overlayContainer)
+  setTimeout(() => {
+    overlayContainer.style.opacity = "1"
+  }, 50);
+}
+
 
 function modulePlayButtonHandler(event) {
   let partition = {
@@ -87,8 +142,6 @@ function modulePlayButtonHandler(event) {
   })
   
 }
-
-//To export in modules
 
 function addFormBtnClicked(event) {
   const mesureInput = document.querySelector("#mesureInput").value
