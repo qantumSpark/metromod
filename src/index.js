@@ -63,12 +63,33 @@ playBtn.addEventListener("click", e => {
 //MODS SECTION
 ///////////////////////////////////
 //api.newCollection("mods-cache")
-const addBtn = document.querySelector('#modsAddButton')
-
-
 window.addEventListener('load', () => api.getCollection("mods-cache").forEach(item => renderSegment(item, "#mods .list-container")))
 
+const addBtn = document.querySelector('#modsAddButton')
 addBtn.addEventListener('click', addFormBtnClicked)
+
+const playModulesButton = document.querySelector('.play-button.mod-button')
+playModulesButton.addEventListener('click', modulePlayButtonHandler)
+
+function modulePlayButtonHandler(event) {
+  let partition = {
+    name: 'Cache live playing',
+    segments: api.getCollection('mods-cache')
+  }
+  console.log('clicked');
+  metro.isOn = !metro.isOn
+  
+  metro.playPartition(partition, ()=>{
+    document.querySelector('.mods-led').classList.add('beep')
+    setTimeout(() => {
+      document.querySelector('.mods-led').classList.remove('beep')
+    }, 100);
+  })
+  
+}
+
+//To export in modules
+
 function addFormBtnClicked(event) {
   const mesureInput = document.querySelector("#mesureInput").value
   const baseInput = document.querySelector("#baseInput").value
@@ -86,6 +107,10 @@ function renderSegment(obj, selectorContainer) {
   let container = document.querySelector(selectorContainer)
   let { mesure, base, tempo, id } = obj
 
+  const svg_delete = `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12.6174 13.6514L9.02058 10.1783L5.54746 13.7752L4.3485 12.6175L7.82162 9.02062L4.22476 5.5475L5.38247 4.34854L8.97933 7.82166L12.4525 4.2248L13.6514 5.38251L10.1783 8.97937L13.7751 12.4525L12.6174 13.6514Z" fill="#0B223C" fill-opacity="0.5"/>
+  </svg>`
+
   let segment = document.createElement('div')
   segment.classList.add('mods-segment')
   segment.setAttribute('id', id)
@@ -93,15 +118,16 @@ function renderSegment(obj, selectorContainer) {
     <h5 class="segment-mesures">Mesures: <span>${mesure}</span> </h5>
     <h5 class="segment-mesures">Base: <span>${base}</span> </h5>
     <h5 class="segment-mesures">Tempo: <span>${tempo}</span> </h5>
-    <div class="segment-delete" ><h5>x</h5></div>
+    <div class="segment-delete" >${svg_delete}</div>
   `
   container.appendChild(segment)
-  console.log(segment.childNodes[7]);
+  //console.log(segment.childNodes[7]);
   
   segment.childNodes[7].addEventListener('click', e => {
-    console.log('clicked');
+    //console.log('clicked');
     api.deleteItem("mods-cache", id)
     document.getElementById(id).style.opacity = "0"
+    document.getElementById(id).style.transform = "scaleY(-100%)"
     document.getElementById(id).style.height = "0px"
     setTimeout(()=>refreshView("mods-cache", "#mods .list-container"), 300)
   })

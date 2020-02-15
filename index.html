@@ -38,27 +38,35 @@
 
     <div class="page hiddenPage" id="mods">
       <form>
-        <div class="mods-form-label">
           <label for="mesureInput" id="mesureLabel">Mesures:</label>
-          <label for="baseInput" id="baseLabel">base:</label>
-          <label for="tempoInput" id="tempoLabel">tempo:</label>
-        </div>
-        <div class="mods-form-input">
           <input type="number" min="1" max="30" id="mesureInput" value="5">
+          <label for="baseInput" id="baseLabel">base:</label>
           <input type="number" min="2" max="4" id="baseInput" value="4">
+          <label for="tempoInput" id="tempoLabel">tempo:</label>
           <input type="number" min="4" max="220" id="tempoInput" value="90">
           <button class="button" id="modsAddButton">+</button>
-        </div>
       </form>
-      <div class="mods-beeper-indicator">
+      <div class="option-container">
+        <div class="mods-beeper-indicator"><div class="mods-led"></div></div>
+        <p>Effacer tout</p>
 
-      </div>
+    </div>  
       <section class="list-container">
         <!-- <div class="list-item">
           <p>Mesures: </p>
           <p>Base: </p>
           <p>tempo: </p>
         </div> -->
+      </section>
+      <section class="mods-buttons">
+        <div class="play-button mod-button"><svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16.6667 10.4167V39.5833L39.5833 25L16.6667 10.4167Z" fill="#3290FF"/>
+          </svg>
+          </div>
+        <div class="save-button mod-button" ><svg width="32" height="42" viewBox="0 0 32 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.6667 12H6.66667C5.18667 12 4 13.2 4 14.6667V33.3333C4 34.8 5.18667 36 6.66667 36H25.3333C26.8 36 28 34.8 28 33.3333V17.3333L22.6667 12ZM16 33.3333C13.7867 33.3333 12 31.5467 12 29.3333C12 27.12 13.7867 25.3333 16 25.3333C18.2133 25.3333 20 27.12 20 29.3333C20 31.5467 18.2133 33.3333 16 33.3333ZM20 20H6.66667V14.6667H20V20Z" fill="#3290FF"/>
+          <path d="M24.0167 7H4V9H24.0167V12L30.6667 8L24.0167 4V7Z" fill="#3290FF"/>
+          </svg></div>
       </section>
 
     </div>

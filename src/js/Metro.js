@@ -34,7 +34,7 @@ function Metro(primSoundSelector, secSoundSelector) {
   };
 
   //Take part (Array of segment) and play it
-  this.playPartition = (part, idx = 0) => {
+  this.playPartition = (part, cb, idx = 0) => {
     //Check if metronome is ON
     if (this.isOn === false) return;
 
@@ -55,18 +55,18 @@ function Metro(primSoundSelector, secSoundSelector) {
         (60000 / segments[idx].tempo);
 
       //Play the segment corresponding to the idx
-      this.playSegment(segments[idx]);
+      this.playSegment(segments[idx], cb);
 
       //Recursive call timedout with the delay
       setTimeout(() => {
         //Increment the segment and play
-        this.playPartition(part, idx + 1);
+        this.playPartition(part, cb, idx + 1);
       }, delay);
     }
   };
 
   //Play a single segment
-  this.playSegment = segment => {
+  this.playSegment = (segment, cb) => {
     //Destructure segment Object
     let { mesure, base, tempo } = segment;
 
@@ -78,11 +78,11 @@ function Metro(primSoundSelector, secSoundSelector) {
     let count = 0;
 
     //Same as simple play with boundary targetCount
-    this.activeMetro(tempoMs, base, 1, count, targetCount);
+    this.activeMetro(tempoMs, base, 1, count, targetCount, cb);
   };
 
   //Handle sound of a segment
-  this.activeMetro = (tempoMs, base, mesureTime, count, targetCount) => {
+  this.activeMetro = (tempoMs, base, mesureTime, count, targetCount, cb) => {
     let newCount = count + 1;
     let time = mesureTime;
 
@@ -92,20 +92,20 @@ function Metro(primSoundSelector, secSoundSelector) {
     //Handle sound et timer
     if (parseInt(mesureTime, 10) === 1) {
       time = time + 1;
-      this.secSound.play();
+      this.primSound.play();
     } else if (parseInt(mesureTime, 10) === parseInt(base, 10)) {
-      console.log(time);
+      //console.log(time);
       time = 1;
       this.secSound.play();
     } else {
-      console.log(time);
+      //console.log(time);
       time = time + 1;
       this.secSound.play();
     }
-
+    cb()
     //Recursive call for the next beat
     setTimeout(() => {
-      this.activeMetro(tempoMs, base, time, newCount, targetCount);
+      this.activeMetro(tempoMs, base, time, newCount, targetCount, cb);
     }, tempoMs);
   };
 }
